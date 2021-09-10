@@ -10,18 +10,18 @@ const salaries =[
 ];
 
 const getEmployee = (id , callback) => {
-    const employee = employees.find(e => e.id === id);
+    const employee = employees.find(e => e.id === id)?.name
     if (employee) {
-        callback(null, employee.name)
+        callback(null, employee)
     } else {
         callback(`${id} not found`)
     }
 }
 
 const getSalary = ( id , callback ) => {
-    const user = salaries.find( e => e.id === id );
-    if (user) {
-        callback(null, user.salary)
+    const salary = salaries.find( e => e.id === id )?.salary;
+    if (salary) {
+        callback(null, salary)
     } else {
         callback(`Could find the salary of the user with id: ${id}.`)
     }

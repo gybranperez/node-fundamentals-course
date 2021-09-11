@@ -9,11 +9,10 @@ const salaries =[
     { id:4 , salary: 2000}
 ];
 
-let myId = 3;
 
 const getEmployee = (id) => {
     return new Promise ( (resolve, reject) => {
-        const employee = employees.find(emp => emp.id === id);
+        const employee = employees.find(emp => emp.id === id)?.name;
         (employee) 
             ? resolve(employee) 
             : reject(`User with id: ${id} not found.`);
@@ -21,13 +20,15 @@ const getEmployee = (id) => {
 }
 const getSalary = (id) => {
     return new Promise (  (resolve,reject) => {
-        const salary = salaries.find(salary => salary.id === id);
+        const salary = salaries.find(salary => salary.id === id)?.salary;
         (salary)
             ? resolve(salary)
             : reject (`User's salary not found.`)
     });
 }
 
+let myId = 3;
+/*
 getEmployee(myId).then(
     employee => console.log(employee)
 ).catch(
@@ -43,3 +44,13 @@ getSalary(myId).then(
 ).finally(
     console.log("ALWAYS salary")
 );
+*/
+
+let name;   // Variable auxiliar para acceder a un valor en diferentes scope
+getEmployee(myId)   // Promesa para obtener el nombre del empleado
+    .then( employee => {    // Si encomtramos el id del empleado en el arreglo...
+        name = employee;    // Asignacion de nombre
+        return getSalary(myId) // se ejecuta la busqueda del salario
+    })
+    .then( salary => console.log(`${name} has a salary of ${salary}`) )
+    .catch( err => console.error(`ERROR!\n\t${err}\n`));

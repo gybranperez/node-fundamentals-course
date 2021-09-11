@@ -9,7 +9,7 @@ const salaries =[
     { id:4 , salary: 2000}
 ];
 
-let myId = 2;
+let myId = 3;
 
 const getEmployee = (id) => {
     return new Promise ( (resolve, reject) => {
@@ -19,6 +19,14 @@ const getEmployee = (id) => {
             : reject(`User with id: ${id} not found.`);
     });
 }
+const getSalary = (id) => {
+    return new Promise (  (resolve,reject) => {
+        const salary = salaries.find(salary => salary.id === id);
+        (salary)
+            ? resolve(salary)
+            : reject (`User's salary not found.`)
+    });
+}
 
 getEmployee(myId).then(
     employee => console.log(employee)
@@ -26,4 +34,12 @@ getEmployee(myId).then(
     err => console.error(err)
 ).finally(
     console.log("ALWAYS")
+);
+
+getSalary(myId).then(
+    salary => console.log(salary)
+).catch(
+    err => console.error(err)
+).finally(
+    console.log("ALWAYS salary")
 );

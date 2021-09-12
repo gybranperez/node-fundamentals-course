@@ -2,5 +2,9 @@
 Curso de fundamentos de NodeJS
 
 ### Contenido
-- 001 Repaso Javascript
-- 002   "        "
+- Javascript basics
+    - 001 Hello world
+    - 002 Arrow functions & callbacks
+    - 003 Promises | Async & await
+- Node basics
+    - 

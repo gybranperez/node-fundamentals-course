@@ -14,12 +14,11 @@ const tabla = (num) => {
     return salida;
 }
 // Versión recursiva para imprimir tablas de multiplicar
-const tablaRecursiva = (num, multiplicador) => {
-    if (multiplicador == 1) {
-        console.log(num);
+const tablaRecursiva = (num, index, rango) => {
+    if (rango == index) {
+        return `${num} x ${index} = ${num * index}\n`;
     }else{
-        console.log(multiplicador * num);
-        tablaRecursiva(num, multiplicador-1);
+        return `${num} x ${index} = ${num * index}\n` + tablaRecursiva(num, index+1, rango);
     }
 }
 

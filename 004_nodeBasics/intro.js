@@ -1,9 +1,12 @@
 // Utileria para desacoplar funcionalidad
 // para procesar la tabla de multiplicar y grabarla en un archivo
-const { crearArchivoTabla } = require("./helpers/toolsFiles");
+const { crearArchivoTabla, crearTablaConRango } = require("./helpers/toolsFiles");
+//const argv = require("yargs").argv;
+const argv = require("./config/yargs")
 //Limpiando consola
 console.clear();
 //Calculo de tabla de multiplicar
-const number = 3;
-// Creacion de archivo tabla
-crearArchivoTabla(number);
+crearTablaConRango(base = argv.base, rango = argv.rango , list = argv.list)
+    .then((result) => { 
+        console.log(result);
+    }).catch(err => console.error(err));
